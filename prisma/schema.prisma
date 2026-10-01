@@ -4,8 +4,7 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -21,11 +20,12 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   roles     Role   @default(USER)
-  tenant    Tenant @relation(fields: [id], references: [id])
+  Tenantid  Int    @map("Tenantid")
+  tenant    Tenant @relation(fields: [Tenantid], references: [Tenantid], onDelete: Cascade)
 }
 
 model Tenant{
-  id        Int   @id @default(autoincrement())
+  Tenantid        Int   @id @default(autoincrement())
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -9,6 +9,7 @@ export default tseslint.config(
     ignores: [
       'eslint.config.mjs',
       'prisma.config.ts',
+      'prisma/seed.ts',
     ],
   },
   eslint.configs.recommended,
