@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import pkg from '@prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
+import * as bcrypt from 'bcryptjs';
 
 const { PrismaClient, Role } = pkg;
 
@@ -22,14 +23,14 @@ async function main() {
           {
             name: 'Administrador Alpha',
             email: 'admin@alpha.com',
-            password: 'hashed_password_123',
+            password: await bcrypt.hash('password_123', 10),
             telephone: '+505 8888-1111',
             roles: Role.ADMIN,
           },
           {
             name: 'Carlos Mendoza',
             email: 'carlos@alpha.com',
-            password: 'hashed_password_456',
+            password: await bcrypt.hash('password_456', 10),
             telephone: '+505 8888-2222',
             roles: Role.USER,
           },
